@@ -8,7 +8,12 @@ import java.util.Scanner;
 import java.util.zip.CheckedOutputStream;
 
 public class WordList {
-    private ArrayList<String> words = new ArrayList<String>();
+
+    private static final ArrayList<String> words = new ArrayList<String>();
+
+    public ArrayList<String> getDictinoary(){
+        return words;
+    }
 
     public void getListFromTextFile(String path) throws FileNotFoundException {
         File sourceFile = new File(path);
@@ -18,10 +23,9 @@ public class WordList {
             while (scanner.hasNext()) {
                 String word = scanner.nextLine();
                 words.add(word);
+
+
             }
         }
     }
-
-
-
 }
