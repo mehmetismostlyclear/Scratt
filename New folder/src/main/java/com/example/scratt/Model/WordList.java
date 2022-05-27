@@ -23,8 +23,6 @@ public class WordList {
             while (scanner.hasNext()) {
                 String word = scanner.nextLine();
                 words.add(word);
-
-
             }
         }
     }

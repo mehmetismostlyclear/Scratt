@@ -13,6 +13,4 @@ public class Letters {
             numbersMap.put(i, letters[i]);
         }
     }
-
-
 }
