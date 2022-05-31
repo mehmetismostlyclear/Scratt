@@ -4,5 +4,7 @@ module com.example.scratt {
 
 
     opens com.example.scratt to javafx.fxml;
+    opens com.example.scratt.Controller to javafx.fxml;
     exports com.example.scratt;
+    exports com.example.scratt.Controller;
 }

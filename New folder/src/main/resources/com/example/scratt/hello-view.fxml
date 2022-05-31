@@ -1,16 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.scratt.HelloController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
-
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="567.0" prefWidth="284.0" style="-fx-background-color: #282C43;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.scratt.HelloController">
+    <children>
+        <Button fx:id="newGameBtn" layoutX="15.0" layoutY="14.0" mnemonicParsing="false" onAction="#nGameBtnClick" prefHeight="163.0" prefWidth="254.0" style="-fx-background-color: #212748; -fx-background-radius: 15; -fx-border-color: #94B1FB; -fx-border-radius: 15;" text="HIZLI OYUN BAŞLAT" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+            <font>
+                <Font name="Gabriola" size="25.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor></Button>
+        <Button fx:id="createGameBtn" contentDisplay="CENTER" layoutX="15.0" layoutY="191.0" mnemonicParsing="false"  prefHeight="361.0" prefWidth="254.0" style="-fx-background-color: #15182D; -fx-background-radius: 15; -fx-border-color: #94B1FB; -fx-border-radius: 15;" text="KENDİ OYUNUNU OLUŞTUR" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+            <font>
+                <Font name="Gabriola" size="25.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor></Button>
+        <TextField alignment="CENTER" layoutX="51.0" layoutY="221.0" prefHeight="38.0" prefWidth="182.0" promptText="_  _  _  _  _  _  _" style="-fx-background-color: #15182D;">
+            <font>
+                <Font size="17.0" />
+            </font>
+        </TextField>
+        <Line endX="100.0" layoutX="142.0" layoutY="276.0" startX="-100.0" stroke="#94b1fb" />
+    </children>
+    <opaqueInsets>
+        <Insets />
+    </opaqueInsets>
+</AnchorPane>
