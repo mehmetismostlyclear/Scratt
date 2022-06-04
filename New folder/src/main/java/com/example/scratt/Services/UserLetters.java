@@ -10,69 +10,67 @@ public class UserLetters {
     double puan = 0;
     public ArrayList<String> foundWords = new ArrayList<>();
     public String metin;
-    public void play() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Please enter 7 letter : ");
-        metin = scanner.nextLine();
+    public void play(String metinfromfxml) {
+        this.metin = metinfromfxml;
         List<String> letters = new ArrayList<>(metin.length());
         if (isValid(metin)) {
             for (int i = 0; i < metin.length(); i++) {
                 String harf = metin.substring(i, i + 1);
                 letters.add(harf);
             }
-        } else {
-            while(!isValid(metin)) {
-                System.out.println("Please enter 7 letter again : ");
-                metin = scanner.nextLine();
+            File file = new File("src/main/resources/VPSOZLUK.txt");
+
+            // list that holds strings of a file
+            ArrayList<String> listOfStrings = new ArrayList<String>();
+
+            // load data from file
+            BufferedReader bf = null;
+            try {
+                bf = new BufferedReader(new FileReader(file));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
             }
-        }
-        File file = new File("src/main/resources/VPSOZLUK.txt");
 
-        // list that holds strings of a file
-        ArrayList<String> listOfStrings = new ArrayList<String>();
-
-        // load data from file
-        BufferedReader bf = null;
-        try {
-            bf = new BufferedReader(new FileReader(file));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        // read entire line as string
-        String line = null;
-        try {
-            line = bf.readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        // checking for end of file
-        while (line != null) {
-            listOfStrings.add(line);
+            // read entire line as string
+            String line = null;
             try {
                 line = bf.readLine();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
 
-        // closing bufferreader object
-        try {
-            bf.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            // checking for end of file
+            while (line != null) {
+                listOfStrings.add(line);
+                try {
+                    line = bf.readLine();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            // closing bufferreader object
+            try {
+                bf.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            findWord(listOfStrings, letters);
+
+            System.out.println("Bu harflerle yazılabilecek kelime sayısı : " + uygunKelimeSayisi);
+            System.out.println("Oluşan bu kelimelerin toplam puanı : " + findTotalPoint(foundWords));
+        } else {
+            System.out.println("geçersizz");
+            ///play();
+            }
 
         // storing the data in arraylist to array
         /*for (int i = 0; i < listOfStrings.size(); i++) {
             System.out.println(listOfStrings.get(i));
         }*/
 
-        findWord(listOfStrings, letters);
 
-        System.out.println("Bu harflerle yazılabilecek kelime sayısı : " + uygunKelimeSayisi);
-        System.out.println("Oluşan bu kelimelerin toplam puanı : " + findTotalPoint(foundWords));
+
     }
     public boolean isValid(String usersLetters) {
         boolean result = true;

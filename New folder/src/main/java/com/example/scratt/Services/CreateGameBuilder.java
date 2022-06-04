@@ -14,22 +14,28 @@ public class CreateGameBuilder{
 
     }*/
     ArrayList<String> gamewords = new ArrayList<String>();
-    ArrayList<String> gamewordswithcenterletter = new ArrayList<>();
+    public ArrayList<String> gamewordswithcenterletter = new ArrayList<>();
 
     Letters lt = new Letters();
     Random random = new Random();
     public StringBuilder gameletters = new StringBuilder();
     public char centerLetter = 'a';
+    int max = 0;
+
+    ArrayList<String> dictinoary;
 
     public CreateGameBuilder() throws FileNotFoundException {
+        getDictinoary();
         generateRandomLetters();
     }
     public CreateGameBuilder(StringBuilder gameletters, ArrayList<String> gamewords) throws FileNotFoundException {
+        getDictinoary();
         boolean c = false;
         this.gamewords = gamewords;
         this.gameletters = gameletters;
         if(isitWorhtitToPlay(gameletters)){
             c = choosecenterletterandwords(gamewords, lt.ReturnKeyNums(gameletters));
+
             if(!c){
                 ///hatamesajıdönder();
             }
@@ -42,6 +48,7 @@ public class CreateGameBuilder{
 
     public void generateRandomLetters() throws FileNotFoundException {
         gameletters.delete(0, 8);
+        gamewords.clear();
         ArrayList<Integer> nums = new ArrayList<Integer>();
         for (int i = 0; i < 7; i++) {
             nums.add(random.nextInt(0, 29));
@@ -52,6 +59,7 @@ public class CreateGameBuilder{
         if (isitWorhtitToPlay(gameletters)){
             c = choosecenterletterandwords(gamewords, nums);
             if(!c){
+                gameletters.delete(0,8);
                 generateRandomLetters();
             }
         }
@@ -59,10 +67,8 @@ public class CreateGameBuilder{
             generateRandomLetters();
         }
     }
-
     ///bu metot bir listedeki aynı integer değerleri dışarı atar içeiçe metot şeklinde yazılması daha doğru
     public ArrayList<Integer> removeDuplicates(ArrayList<Integer> list) {
-         /// bura yanlış
         ArrayList<Integer> newList = new ArrayList<Integer>();
 
         for (Integer element : list) {
@@ -76,36 +82,40 @@ public class CreateGameBuilder{
         }
         return newList;
     }
+    public void getDictinoary() throws FileNotFoundException {
 
-    /// karışık numaralı listeden kaç tane kelime sözlüğün içinde mi?
-    public boolean isitWorhtitToPlay (StringBuilder gameletters) throws FileNotFoundException {
-        ArrayList<String> dictinoary;
         WordList wd = new WordList();
         wd.getListFromTextFile("C:/Users/mkurn/Desktop/New folder/src/main/resources/VPSOZLUK.txt");
         dictinoary = wd.getDictinoary();
-            for (String word : dictinoary) {
-                boolean control = true;
-                while (control) {
-                    int cout = 0;
-                    for (int i = 0; i < 7; i++) {
-                        if (word.contains(String.valueOf(gameletters.charAt(i)))) {
-                            cout++;
-                        }
-                    }
-                    if (cout > 3) {
-                        for (char karekter : word.toCharArray()) {
-                            if (!gameletters.toString().contains(String.valueOf(karekter))) {
-                                control = false;
-                                break;
-                            }
-                        }
-                        if (control)
-                            gamewords.add(word);
-                    }
+    }
 
-                    control = false;
+    /// karışık numaralı listeden kaç tane kelime sözlüğün içinde mi?
+    public boolean isitWorhtitToPlay (StringBuilder gameletters)  {
+        for (String word : dictinoary) {
+            boolean control = true;
+            while (control) {
+                int cout = 0;
+                for (int i = 0; i < 7; i++) {
+                    if (word.contains(String.valueOf(gameletters.charAt(i)))) {
+                        cout++;
+                    }
                 }
+                if (cout > 3) {
+                    for (char karekter : word.toCharArray()) {
+                        if (!gameletters.toString().contains(String.valueOf(karekter))) {
+                            control = false;
+                            break;
+                        }
+                    }
+                    if (control) {
+                        gamewords.add(word);
+                        break;
+                    }
+                }
+
+                control = false;
             }
+        }
 
         /// burayı da soralım
         if(gamewords.size() > 20){
@@ -117,7 +127,6 @@ public class CreateGameBuilder{
     }
 
     public Boolean choosecenterletterandwords(ArrayList<String> gamewords, ArrayList<Integer> nums) throws FileNotFoundException {
-        int max = 0;
         for (int randomnum : nums) {
             ArrayList<String> temproarygamewords = new ArrayList<>();
             temproarygamewords.addAll(gamewords);
@@ -125,7 +134,11 @@ public class CreateGameBuilder{
             temproarygamewords.removeIf(n -> !n.contains((String.valueOf(centerLetter))));
             if (temproarygamewords.size() > 20) {
                 gamewordswithcenterletter = new ArrayList<>(temproarygamewords);
-                ///buraya bir tane gamelettersstan charı silen kod yazılmalı
+                gameletters = new StringBuilder(String.valueOf(gameletters).replace(String.valueOf(centerLetter), ""));
+                System.out.println(gameletters);
+                for(String gm : gamewordswithcenterletter){
+                    System.out.println(gm);
+                }
                 return true;
             }
         }

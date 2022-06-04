@@ -7,7 +7,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="850.0" style="-fx-background-color: #282C43;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.scratt.Controller.ScreenWriterController">
+<AnchorPane fx:id="anchorPane" prefHeight="500.0" prefWidth="850.0" style="-fx-background-color: #282C43;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.scratt.Controller.ScreenWriterController">
     <children>
         <HBox alignment="TOP_CENTER" layoutX="16.0" layoutY="433.0" prefHeight="43.0" prefWidth="818.0" style="-fx-background-color: #212748; -fx-border-color: #94b1fb; -fx-border-radius: 10; -fx-background-radius: 10; -fx-spacing: 100;">
             <children>
@@ -52,7 +52,7 @@
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor></Polygon>
-        <Button layoutX="52.0" layoutY="340.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="104.0" style="-fx-border-color: #ffa7a7; -fx-background-color: #282C43; -fx-border-radius: 25;" text="Sil" textFill="#ffa7a7">
+        <Button fx:id="buttonSil" layoutX="52.0" layoutY="340.0" mnemonicParsing="false" onAction="#btnSilClicked" prefHeight="56.0" prefWidth="104.0" style="-fx-border-color: #ffa7a7; -fx-background-color: #282C43; -fx-border-radius: 25;" text="Sil" textFill="#ffa7a7">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
@@ -60,7 +60,7 @@
                 <Font name="Gabriola" size="26.0" />
             </font>
         </Button>
-        <Button layoutX="180.0" layoutY="340.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="59.0" style="-fx-border-color: #ffa7a7; -fx-background-color: #282C43; -fx-border-radius: 30;" text="~" textFill="#ffa7a7">
+        <Button layoutX="180.0" layoutY="340.0" mnemonicParsing="false" onAction="#MixLetters" prefHeight="56.0" prefWidth="59.0" style="-fx-border-color: #ffa7a7; -fx-background-color: #282C43; -fx-border-radius: 30;" text="~" textFill="#ffa7a7">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
@@ -68,7 +68,7 @@
                 <Font name="Gadugi" size="26.0" />
             </font>
         </Button>
-        <Button onAction="#handleSubmitAction" layoutX="264.0" layoutY="340.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="104.0" style="-fx-border-color: #ffa7a7; -fx-background-color: #282C43; -fx-border-radius: 25;" text="Dene" textFill="#ffa7a7">
+        <Button layoutX="264.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleSubmitAction" prefHeight="56.0" prefWidth="104.0" style="-fx-border-color: #ffa7a7; -fx-background-color: #282C43; -fx-border-radius: 25;" text="Dene" textFill="#ffa7a7">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
@@ -76,7 +76,7 @@
                 <Font name="Gabriola" size="26.0" />
             </font>
         </Button>
-        <Text fill="#ffa7a7" layoutX="23.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="374.13671875">
+        <Text fx:id="userAnswer" fill="#ffa7a7" layoutX="23.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="374.13671875">
             <font>
                 <Font name="Gabriola" size="39.0" />
             </font>
@@ -84,7 +84,7 @@
         <Line endX="82.0" layoutX="219.0" layoutY="88.0" startX="-100.0" stroke="#ffa7a7" />
         <Pane layoutX="414.0" layoutY="14.0" prefHeight="403.0" prefWidth="421.0" style="-fx-background-color: #15182D; -fx-background-radius: 10;">
             <children>
-                <Text fill="#ffa7a7" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="421.6">
+                <Text fx:id="foundAnswers" fill="#ffa7a7" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="421.6">
                     <font>
                         <Font name="Corbel Light" size="25.0" />
                     </font>
@@ -97,7 +97,7 @@
                 </Text>
             </children>
         </Pane>
-        <Text fx:id="letter0" layoutX="201.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="x" textAlignment="CENTER" wrappingWidth="18.5078125">
+        <Text fx:id="letter0" layoutX="201.0" layoutY="161.0" onMouseClicked="#LetterClick" strokeType="OUTSIDE" strokeWidth="0.0" text="x" textAlignment="CENTER" wrappingWidth="18.5078125">
             <font>
                 <Font size="26.0" />
             </font>
@@ -105,7 +105,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Text>
-        <Text fx:id="letter1" layoutX="254.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="x" textAlignment="CENTER" wrappingWidth="18.5078125">
+        <Text fx:id="letter1" layoutX="254.0" layoutY="197.0" onMouseClicked="#LetterClick" strokeType="OUTSIDE" strokeWidth="0.0" text="x" textAlignment="CENTER" wrappingWidth="18.5078125">
             <font>
                 <Font size="26.0" />
             </font>
@@ -113,7 +113,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Text>
-        <Text fx:id="letter2" layoutX="254.0" layoutY="260.0" strokeType="OUTSIDE" strokeWidth="0.0" text="x" textAlignment="CENTER" wrappingWidth="18.5078125">
+        <Text fx:id="letter2" layoutX="254.0" layoutY="260.0" onMouseClicked="#LetterClick" strokeType="OUTSIDE" strokeWidth="0.0" text="x" textAlignment="CENTER" wrappingWidth="18.5078125">
             <font>
                 <Font size="26.0" />
             </font>
@@ -121,7 +121,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Text>
-        <Text fx:id="letter4" layoutX="201.0" layoutY="289.0" strokeType="OUTSIDE" strokeWidth="0.0" text="x" textAlignment="CENTER" wrappingWidth="18.5078125">
+        <Text fx:id="letter4" layoutX="201.0" layoutY="289.0" onMouseClicked="#LetterClick" strokeType="OUTSIDE" strokeWidth="0.0" text="x" textAlignment="CENTER" wrappingWidth="18.5078125">
             <font>
                 <Font size="26.0" />
             </font>
@@ -129,7 +129,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Text>
-        <Text fx:id="letter3" layoutX="147.0" layoutY="260.0" strokeType="OUTSIDE" strokeWidth="0.0" text="x" textAlignment="CENTER" wrappingWidth="18.5078125">
+        <Text fx:id="letter3" layoutX="147.0" layoutY="260.0" onMouseClicked="#LetterClick" strokeType="OUTSIDE" strokeWidth="0.0" text="x" textAlignment="CENTER" wrappingWidth="18.5078125">
             <font>
                 <Font size="26.0" />
             </font>
@@ -137,7 +137,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Text>
-        <Text fx:id="letter5" layoutX="146.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="x" textAlignment="CENTER" wrappingWidth="18.5078125">
+        <Text fx:id="letter5" layoutX="146.0" layoutY="197.0" onMouseClicked="#LetterClick" strokeType="OUTSIDE" strokeWidth="0.0" text="x" textAlignment="CENTER" wrappingWidth="18.5078125">
             <font>
                 <Font size="26.0" />
             </font>
@@ -145,7 +145,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Text>
-        <Text fx:id="centerletter" layoutX="200.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="x" textAlignment="CENTER" wrappingWidth="18.5078125">
+        <Text fx:id="centerletter" layoutX="200.0" layoutY="225.0" onMouseClicked="#LetterClick" strokeType="OUTSIDE" strokeWidth="0.0" text="x" textAlignment="CENTER" wrappingWidth="18.5078125">
             <font>
                 <Font size="26.0" />
             </font>

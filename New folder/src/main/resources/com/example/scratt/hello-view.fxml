@@ -23,7 +23,7 @@
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor></Button>
-        <TextField alignment="CENTER" layoutX="51.0" layoutY="221.0" prefHeight="38.0" prefWidth="182.0" promptText="_  _  _  _  _  _  _" style="-fx-background-color: #15182D;">
+        <TextField fx:id="createGameText" alignment="CENTER" layoutX="51.0" layoutY="221.0" prefHeight="38.0" prefWidth="182.0" promptText="_  _  _  _  _  _  _" style="-fx-background-color: #15182D;">
             <font>
                 <Font size="17.0" />
             </font>
