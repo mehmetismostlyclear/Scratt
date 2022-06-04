@@ -21,6 +21,24 @@ public class CreateGameBuilder{
     public StringBuilder gameletters = new StringBuilder();
     public char centerLetter = 'a';
 
+    public CreateGameBuilder() throws FileNotFoundException {
+        generateRandomLetters();
+    }
+    public CreateGameBuilder(StringBuilder gameletters, ArrayList<String> gamewords) throws FileNotFoundException {
+        boolean c = false;
+        this.gamewords = gamewords;
+        this.gameletters = gameletters;
+        if(isitWorhtitToPlay(gameletters)){
+            c = choosecenterletterandwords(gamewords, lt.ReturnKeyNums(gameletters));
+            if(!c){
+                ///hatamesajıdönder();
+            }
+        }
+        else{
+            ///hata mesajı gönder();
+        }
+    }
+
 
     public void generateRandomLetters() throws FileNotFoundException {
         gameletters.delete(0, 8);
@@ -29,8 +47,9 @@ public class CreateGameBuilder{
             nums.add(random.nextInt(0, 29));
         }
         nums = removeDuplicates(nums);
+        gameletters = lt.ReturnValuesAsAStringBuilder(nums);
         boolean c = false;
-        if (isitWorhtitToPlay(nums)){
+        if (isitWorhtitToPlay(gameletters)){
             c = choosecenterletterandwords(gamewords, nums);
             if(!c){
                 generateRandomLetters();
@@ -57,16 +76,13 @@ public class CreateGameBuilder{
         }
         return newList;
     }
+
     /// karışık numaralı listeden kaç tane kelime sözlüğün içinde mi?
-    public boolean isitWorhtitToPlay (ArrayList<Integer> randomnums) throws FileNotFoundException {
+    public boolean isitWorhtitToPlay (StringBuilder gameletters) throws FileNotFoundException {
         ArrayList<String> dictinoary;
-        for (int randomnum : randomnums) {
-            gameletters.append(lt.numbersMap.get(randomnum));
-        }
         WordList wd = new WordList();
         wd.getListFromTextFile("C:/Users/mkurn/Desktop/New folder/src/main/resources/VPSOZLUK.txt");
         dictinoary = wd.getDictinoary();
-
             for (String word : dictinoary) {
                 boolean control = true;
                 while (control) {
@@ -116,8 +132,3 @@ public class CreateGameBuilder{
         return false;
     }
 }
-
-
-
-
-

@@ -16,7 +16,7 @@
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor></Button>
-        <Button fx:id="createGameBtn" contentDisplay="CENTER" layoutX="15.0" layoutY="191.0" mnemonicParsing="false"  prefHeight="361.0" prefWidth="254.0" style="-fx-background-color: #15182D; -fx-background-radius: 15; -fx-border-color: #94B1FB; -fx-border-radius: 15;" text="KENDİ OYUNUNU OLUŞTUR" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+        <Button fx:id="createGameBtn" onAction="#nGameBtnClick" contentDisplay="CENTER" layoutX="15.0" layoutY="191.0" mnemonicParsing="false"  prefHeight="361.0" prefWidth="254.0" style="-fx-background-color: #15182D; -fx-background-radius: 15; -fx-border-color: #94B1FB; -fx-border-radius: 15;" text="KENDİ OYUNUNU OLUŞTUR" textAlignment="CENTER" textFill="WHITE" wrapText="true">
             <font>
                 <Font name="Gabriola" size="25.0" />
             </font>
