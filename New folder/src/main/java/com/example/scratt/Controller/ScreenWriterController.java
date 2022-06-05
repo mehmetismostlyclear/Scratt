@@ -9,6 +9,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -38,8 +39,11 @@ public class ScreenWriterController implements Initializable {
     @FXML private Text userAnswer;
     @FXML private Text foundAnswers;
     @FXML private Label scoreBoard;
-
+    int x = 0;
     boolean whichgame = true;
+
+    int numOfFoundWords, totalNumOfWords , userPoint, totalPoint, numOfFoundPanagrams, totalNumOfPanagrams;
+    String score;
 
     CreateGameBuilder cr = new CreateGameBuilder();
 
@@ -48,23 +52,29 @@ public class ScreenWriterController implements Initializable {
 
     public void createkalvye(){
         anchorPane.setOnKeyPressed(new EventHandler<KeyEvent>() {
+
             @Override
             public void handle(KeyEvent keyEvent) {
                 boolean valid = false;
-
-                if (keyEvent.getCode().isDigitKey() || keyEvent.getCode().isLetterKey()){
-                        valid = String.valueOf(cr.gameletters).contains(keyEvent.getCode().toString().toLowerCase(Locale.ROOT));
+                if ((x == 0) || (x == 11)) {
+                    userAnswer.setText("");
+                    x++;
+                }
+                if (keyEvent.getCode().isLetterKey()) {
+                    valid = String.valueOf(cr.gameletters).contains(keyEvent.getCode().toString().toLowerCase(Locale.ROOT));
 
                     if (valid) {
                         userAnswer.setText(userAnswer.getText() + keyEvent.getCode().toString().toLowerCase(Locale.ROOT));
                         userAnswer.setFill(Color.WHITE);
-                    }
-                    else {
+                    } else {
                         userAnswer.setFill(Color.GRAY);
                         userAnswer.setText(userAnswer.getText() + keyEvent.getCode().toString().toLowerCase(Locale.ROOT));
                     }
                 }
+                if (keyEvent.getCode() == KeyCode.BACK_SPACE)
+                    btnSilClicked(new ActionEvent());
             }
+
         });
     }
 
@@ -79,7 +89,6 @@ public class ScreenWriterController implements Initializable {
             e.printStackTrace();
         }
         createkalvye();
-
 
     }
     public void checkGameType(boolean whichgame){
@@ -103,13 +112,18 @@ public class ScreenWriterController implements Initializable {
         letter3.setText(String.valueOf(cr.gameletters.charAt(3)));
         letter4.setText(String.valueOf(cr.gameletters.charAt(4)));
         letter5.setText(String.valueOf(cr.gameletters.charAt(5)));
+        totalNumOfWords = cr.gamewordswithcenterletter.size();
+        cr.listOfPangrams();
+        totalNumOfPanagrams = cr.panagrams.size();
+        score = numOfFoundWords + "/" + totalNumOfWords + "/" + userPoint +"/" + numOfFoundPanagrams + "/" +totalNumOfPanagrams;
+        scoreBoard.setText(score);
     }
 
     @FXML public void handleSubmitAction(ActionEvent event) throws FileNotFoundException {
         PlayGame playGame = new PlayGame();
         if (playGame.checkWord(cr.gamewordswithcenterletter, userAnswer.getText())){
             foundAnswers.setText(foundAnswers.getText() + "\n" + userAnswer.getText());
-
+            updateScore();
         }
         else
             userAnswer.setText("");
@@ -139,6 +153,10 @@ public class ScreenWriterController implements Initializable {
     }
 
     public void LetterClick(MouseEvent mouseEvent) {
+        if((x == 0) || (x == 11)){
+            userAnswer.setText("");
+            x++;
+        }
         if(mouseEvent.getSource() == letter0){
             userAnswer.setText(userAnswer.getText() + letter0.getText());
         }
@@ -164,5 +182,19 @@ public class ScreenWriterController implements Initializable {
             System.out.println(gamwords);
         }
     }
+    public void updateScore(){
+
+        String[] sc  = foundAnswers.getText().split("/n");
+        String answer = sc[sc.length-1];
+        if (answer.length() == 4) {
+            userPoint += 1;
+            numOfFoundWords++;
+        } else if (answer.length() >= 4) {
+            userPoint += (answer.length() - 4) * 2;
+        }
+
+        score = numOfFoundWords + "/" + totalNumOfWords + "/" + userPoint+ "/" +totalPoint+ "/" + numOfFoundPanagrams + "/" +totalNumOfPanagrams;
+    }
+
 }
 

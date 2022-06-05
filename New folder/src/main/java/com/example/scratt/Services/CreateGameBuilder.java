@@ -15,6 +15,7 @@ public class CreateGameBuilder{
     }*/
     ArrayList<String> gamewords = new ArrayList<String>();
     public ArrayList<String> gamewordswithcenterletter = new ArrayList<>();
+    public ArrayList<String> panagrams = new ArrayList<>();
 
     Letters lt = new Letters();
     Random random = new Random();
@@ -139,9 +140,25 @@ public class CreateGameBuilder{
                 for(String gm : gamewordswithcenterletter){
                     System.out.println(gm);
                 }
+                listOfPangrams();
                 return true;
             }
         }
         return false;
+    }
+    public void listOfPangrams(){
+        for (String word : gamewordswithcenterletter){
+            boolean isPanagram = true;
+            for (int i = 0; i < 6; i++){
+                if (!word.contains(String.valueOf(gameletters.charAt(i)))) {
+                    isPanagram = false;
+                }
+            }
+            if (isPanagram)
+                panagrams.add(word);
+            for(String wd : panagrams){
+                System.out.println(wd);
+                }
+        }
     }
 }

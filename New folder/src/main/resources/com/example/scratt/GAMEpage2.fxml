@@ -11,7 +11,7 @@
     <children>
         <HBox alignment="TOP_CENTER" layoutX="16.0" layoutY="433.0" prefHeight="43.0" prefWidth="818.0" style="-fx-background-color: #212748; -fx-border-color: #94b1fb; -fx-border-radius: 10; -fx-background-radius: 10; -fx-spacing: 100;">
             <children>
-                <Label prefHeight="42.0" prefWidth="501.0" text=" Found : 8 / 46     Points : 26 /239     Panagrams : 1 / 3" textAlignment="CENTER" textFill="#94b1fb">
+                <Label fx:id="scoreBoard" prefHeight="42.0" prefWidth="501.0" text=" Found : 8 / 46     Points : 26 /239     Panagrams : 1 / 3" textAlignment="CENTER" textFill="#94b1fb">
                     <font>
                         <Font name="Candara Light" size="23.0" />
                     </font>
@@ -76,7 +76,7 @@
                 <Font name="Gabriola" size="26.0" />
             </font>
         </Button>
-        <Text fx:id="userAnswer" fill="#ffa7a7" layoutX="23.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="374.13671875">
+        <Text fx:id="userAnswer" fill="#ffa7a7" layoutX="23.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Scrat" textAlignment="CENTER" wrappingWidth="374.13671875">
             <font>
                 <Font name="Gabriola" size="39.0" />
             </font>
